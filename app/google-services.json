@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "846915216461",
+    "firebase_url": "https://say-5e40c.firebaseio.com",
+    "project_id": "say-5e40c",
+    "storage_bucket": "say-5e40c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846915216461:android:c5b16fa6b0eb51dd",
+        "android_client_info": {
+          "package_name": "com.example.stefa.safearoundyou"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "846915216461-off20jpf0dded3a7qqdveap477h3co18.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.stefa.safearoundyou",
+            "certificate_hash": "882c557db5e3879b58058678f9b77298de6f448d"
+          }
+        },
+        {
+          "client_id": "846915216461-bgpcsr3gu8vt1bqejhglmpre8dh386rl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDT4QCk2bb4aapei8MowTd2n6TBk5o5dgY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "846915216461-bgpcsr3gu8vt1bqejhglmpre8dh386rl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
