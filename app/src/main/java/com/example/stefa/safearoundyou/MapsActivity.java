@@ -24,12 +24,17 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
     private static final int MY_REQUEST_INT = 177;
     private GoogleMap mMap;
     private LocationListener locationListener;
     private LocationManager locationManager;
+    double x,y;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("pinuri");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,13 +65,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public boolean onMarkerClick(Marker marker) {
                 Toast.makeText(MapsActivity.this,"MERE",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MapsActivity.this, Adauga.class));
+                LatLng position = new LatLng(x,y);
+                Intent intent = new Intent(MapsActivity.this,Adauga.class);
+                intent.putExtra("lat",x);
+                intent.putExtra("long",y);
+                startActivity(intent);
                 return false;
             }
         });
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng position) {
+                x=position.latitude;
+                y=position.longitude;
                 MarkerOptions marker= new MarkerOptions();
                 mMap.clear();
                 mMap.addMarker(new MarkerOptions().position(position).title(position.latitude+" "+position.longitude));
@@ -113,6 +124,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         };
 
         Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
+
         LatLng position = new LatLng(location.getLatitude(),location.getLongitude());
         mMap.addMarker(new MarkerOptions().position(position).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(position));

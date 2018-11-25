@@ -3,7 +3,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/Nume_Locatie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -15,11 +15,11 @@
         android:layout_marginEnd="84dp"
         android:layout_marginBottom="359dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:hint="Nume"
+        android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/Descriere_Locatie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -31,6 +31,20 @@
         android:layout_marginEnd="82dp"
         android:layout_marginBottom="247dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:hint="Descriere"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/Creeaza_Marker"
+        android:layout_width="194dp"
+        android:layout_height="51dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="190dp"
+        android:layout_marginBottom="460dp"
+        android:text="CREEAZA MARKER" />
 </RelativeLayout>

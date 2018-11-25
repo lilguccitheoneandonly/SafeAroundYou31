@@ -14,33 +14,35 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterTab extends AppCompatActivity {
-    EditText useredt,emailedt,passwordedt;
+    EditText emailedt,passwordedt;
     Button btn;
     private static final String TAG = "RegisterTab";
     private FirebaseAuth mAuth;
-    private FirebaseUser mUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_tab);
-        useredt = findViewById(R.id.Username);
         mAuth = FirebaseAuth.getInstance();
         emailedt = findViewById(R.id.Email);
         passwordedt= findViewById(R.id.Password);
         btn = findViewById(R.id.Inregistreaza);
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("name");
+
+        myRef.setValue("Hello, World!");
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email,password,username;
+                String email,password;
                 email=emailedt.getText().toString();
                 password=passwordedt.getText().toString();
-                username=useredt.getText().toString();
-//                SignIn(email,password
-                FirebaseDatabase firebaseDataBase;
+//                SignIn(email,password)
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(RegisterTab.this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -49,12 +51,6 @@ public class RegisterTab extends AppCompatActivity {
                                     // Sign in success, update UI with the signed-in user's information
                                     Log.d(TAG, "createUserWithEmail:success");
                                     FirebaseUser user = mAuth.getCurrentUser();
-//                                    if (user) {
-//                                        firebaseDataBase.ref('users/' + user.uid).set({
-//                                                email: user.email,
-//                                                uid : user.uid,
-//                                                username: username
-//    });
                                     updateUI(user);
                                 } else {
                                     // If sign in fails, display a message to the user.

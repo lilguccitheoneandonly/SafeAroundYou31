@@ -31,24 +31,25 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 31;
     private FirebaseAuth mAuth;
-    Button signbtn,googlebtn,registerbtn;
-    EditText edt1,edt2;
+    Button signbtn, googlebtn, registerbtn;
+    EditText edt1, edt2;
     String password, email;
     private static final String TAG = "MainActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         signbtn = findViewById(R.id.button);
         edt1 = findViewById(R.id.editText);
-        edt2 =findViewById(R.id.editText2);
+        edt2 = findViewById(R.id.editText2);
         googlebtn = findViewById(R.id.button2);
         registerbtn = findViewById(R.id.button3);
         mAuth = FirebaseAuth.getInstance();
         googlebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(MainActivity.this ,MapsActivity.class);
+                Intent myIntent = new Intent(MainActivity.this, MapsActivity.class);
                 startActivity(myIntent);
             }
         });
@@ -62,9 +63,29 @@ public class MainActivity extends AppCompatActivity {
         signbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                email = edt1.getText().toString();
+                password = edt2.getText().toString();
+                mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "createUserWithEmail:success");
+                            Intent myIntent = new Intent(MainActivity.this, MapsActivity.class);
+                            startActivity(myIntent);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                            Toast.makeText(MainActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
 
+                        }
+
+
+                    }
+
+                });
             }
-        });
 
 //    void SignIn(final String username, final String password)
 //    {
@@ -102,5 +123,7 @@ public class MainActivity extends AppCompatActivity {
 //        };
 //
 //        queue.add(stringRequest);
+        });
     }
 }
+
